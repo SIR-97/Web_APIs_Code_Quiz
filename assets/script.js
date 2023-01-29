@@ -3,6 +3,7 @@
 var startBtn = document.querySelector("#start");
 var timerEl = document.querySelector("#timer");
 var questionsEl = document.querySelector("#questions");
+var titleEl = document.querySelector("#question-title");
 var choiceEl = document.querySelector("#choices");
 var submitBtn = document.querySelector("#submit");
 var initialEl = document.querySelector("#initials");
@@ -11,7 +12,7 @@ var startScreen = document.querySelector("#start-screen")
 
 // variables regarding the quiz
 
-let shuffledQuestions, currentQuestionIndex 
+let currentQuestionIndex = 0 
 
 // click to start game 
 
@@ -24,30 +25,25 @@ function startGame(){
     startBtn.classList.add("hide")
     startScreen.classList.add("hide")
 
-    // allows the questions to appear randomly
-    shuffledQuestions = questions.sort(() => Math.random - .5) 
-    currentQuestionIndex = 0
-
     // uncovers questions page that is hidden 
     questionsEl.classList.remove("hide")
     setNextQuestion()
 
 }
 
+function setNextQuestion(){
+
+ var showQuestion = questions[currentQuestionIndex]
+ titleEl.textContent = showQuestion.title
+ questionsEl.textContent = showQuestion.question
+}
+
+
 function setTimer(){
 
 }
 
-function setNextQuestion(){
 
-    showQuestion(shuffledQuestions[currentQuestionIndex])
-
-}
-
-// create function that shows questions
-function showQuestion(question){
-    questionsEl.innertext = question.question
-}
 
 function selectAnswer(){
 
@@ -57,12 +53,12 @@ function selectAnswer(){
 
 var questions = [
     {
+        title: 'Question ',
         question: "what is JavaScript?",
-        answers: [
+        choices: [
             {text: "a programming software", correct: true },
-            {text: "a document", correct: false},
-
-        ]
+           {text: "a document", correct: false},
+       ]
     }
 
 ]
